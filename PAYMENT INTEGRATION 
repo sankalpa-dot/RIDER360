@@ -1,0 +1,33 @@
+import com.stripe.Stripe;
+import com.stripe.model.Charge;
+import com.stripe.exception.StripeException;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class PaymentIntegration {
+
+    public static void main(String[] args) {
+        // Set your Stripe API key
+        Stripe.apiKey = "sk_test_your_secret_key";
+
+        // Amount in cents
+        int amount = 1000;
+        String currency = "usd";
+
+        // Create a map to represent the charge details
+        Map<String, Object> chargeParams = new HashMap<>();
+        chargeParams.put("amount", amount);
+        chargeParams.put("currency", currency);
+        chargeParams.put("source", "tok_visa");  // Replace with an actual token from Stripe.js or Elements
+
+        try {
+            // Create a charge
+            Charge charge = Charge.create(chargeParams);
+            System.out.println("Payment successful. Charge ID: " + charge.getId());
+        } catch (StripeException e) {
+            e.printStackTrace();
+            System.out.println("Payment failed. Error: " + e.getMessage());
+        }
+    }
+}
