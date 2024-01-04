@@ -1,0 +1,41 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class UserAuthentication {
+
+    private static Map<String, String> userCredentials = new HashMap<>();
+
+    public static void main(String[] args) {
+        // Register a user (for demonstration purposes)
+        registerUser("john_doe", "secure_password");
+
+        // Simulate login
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter username: ");
+        String enteredUsername = scanner.nextLine();
+        System.out.print("Enter password: ");
+        String enteredPassword = scanner.nextLine();
+
+        if (authenticateUser(enteredUsername, enteredPassword)) {
+            System.out.println("Authentication successful. Welcome, " + enteredUsername + "!");
+        } else {
+            System.out.println("Authentication failed. Please check your credentials.");
+        }
+    }
+
+    // Register a user (in-memory, for demonstration purposes)
+    private static void registerUser(String username, String password) {
+        userCredentials.put(username, password);
+    }
+
+    // Authenticate user
+    private static boolean authenticateUser(String username, String password) {
+        // Check if the entered username exists
+        if (userCredentials.containsKey(username)) {
+            // Check if the entered password matches the stored password (for demonstration purposes)
+            return userCredentials.get(username).equals(password);
+        }
+        return false;
+    }
+}
