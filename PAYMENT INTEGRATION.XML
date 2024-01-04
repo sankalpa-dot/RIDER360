@@ -1,0 +1,8 @@
+<!-- Add this to your pom.xml for Maven -->
+<dependencies>
+    <dependency>
+        <groupId>com.stripe</groupId>
+        <artifactId>stripe-java</artifactId>
+        <version>20.79.0</version>
+    </dependency>
+</dependencies>
